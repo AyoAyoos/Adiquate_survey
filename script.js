@@ -295,11 +295,12 @@ function collectData() {
 }
 
 function getAQCategory(score) {
-  if (score >= 100) return { label: 'High AQ — Climber',      emoji: '🏔️' };
-  if (score >= 75)  return { label: 'Above Average AQ',        emoji: '📈' };
-  if (score >= 50)  return { label: 'Average AQ — Camper',     emoji: '⛺' };
-  return                  { label: 'Low AQ — Quitter',         emoji: '⚠️' };
-}
+    if (score >= 180) return { label: 'Climber',          emoji: '🏔️' };
+    if (score >= 160) return { label: 'Moderate Climber', emoji: '📈' };
+    if (score >= 140) return { label: 'Camper',           emoji: '⛺' };
+    if (score >= 120) return { label: 'Moderate Camper',  emoji: '🏕️' };
+    return                   { label: 'Quitter',          emoji: '⚠️' };
+  }
 
 /* ── Submit ───────────────────────────────────────── */
 async function submitForm() {
