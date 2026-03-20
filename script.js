@@ -170,6 +170,8 @@ function validateStep(step) {
   let valid = true;
 
   if (step === 1) {
+    valid = validateTextField('yearOfPassing',   v => v.trim().length >= 2,
+                              'Please enter your year of passing out.')
     valid = validateTextField('fullName',       v => v.trim().length >= 2,
                               'Please enter your full name.')
          && validateTextField('email',          v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
@@ -272,6 +274,7 @@ function scrollToFirstError() {
 function collectData() {
   const data = {
     personalInfo: {
+      yearOfPassing:  document.getElementById('yearOfPassing').value.trim(),
       fullName:       document.getElementById('fullName').value.trim(),
       email:          document.getElementById('email').value.trim(),
       universityName: document.getElementById('universityName').value.trim(),
@@ -326,6 +329,7 @@ async function submitForm() {
     const formData = collectData();
 
     const { error } = await db.from('responses').insert({
+      year_of_passing: formData.personalInfo.yearOfPassing,
       full_name:     formData.personalInfo.fullName,
       email:         formData.personalInfo.email,
       university:    formData.personalInfo.universityName,
